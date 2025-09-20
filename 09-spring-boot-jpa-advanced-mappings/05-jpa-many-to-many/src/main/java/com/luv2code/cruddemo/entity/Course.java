@@ -5,6 +5,9 @@ import jakarta.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a course entity in the database.
+ */
 @Entity
 @Table(name="course")
 public class Course {
@@ -122,6 +125,7 @@ public class Course {
         }
 
         this.students.add(theStudent);
+
     }
 
     // define toString
