@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Employee Directory</title>
+
+    <!--Bootstrap CSS Style-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+</head>
+<body>
+  <div class="container">
+      <h3>Employee Directory</h3>
+      <hr>
+
+      <!-- Add a button-->
+      <a th:href="@{showFormForAdd}"
+         class="btn btn-primary btn-sm mb-3">
+
+          Add Employee
+      </a>
+
+      <table class="table table-bordered table-striped">
+          <thead class="table-dark">
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr th:each="tempEmployee : ${employees}">
+
+                <td th:text="${tempEmployee.firstName}"></td>
+                <td th:text="${tempEmployee.lastName}"></td>
+                <td th:text="${tempEmployee.email}"></td>
+
+                <!--Add update button link-->
+                <td>
+                    <!--Appends to URL '?employeeId=xxx'-->
+                    <a th:href="@{showFormForUpdate(employeeId=${tempEmployee.id})}"
+                        class="btn btn-info btn-sm">
+                        Update
+                    </a>
+
+                    <!-- Add "delete" button/link-->
+                    <a th:href="@{/employees/delete(employeeId=${tempEmployee.id})}"
+                        class="btn btn-danger btn-sm"
+                        onclick="if (!(confirm('Are you sure you want to delete this employee?'))) return false">
+                        Delete
+                    </a>
+                </td>
+            </tr>
+          
+          </tbody>
+      </table>
+
+  </div>
+
+</body>
+</html>

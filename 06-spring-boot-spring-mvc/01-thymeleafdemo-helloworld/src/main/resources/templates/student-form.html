@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Student Registration</title>
+</head>
+<body>
+    <h3>Student Registration Form</h3>
+    <form th:action="@{/processStudentForm}" th:object="${student}" method="POST">
+
+        <!--TEXT FIELD-->
+
+        First name: <input type="text" th:field="${student.firstName}" />
+
+        <br><br>
+
+        Last name: <input type="text" th:field="${student.lastName}" />
+
+        <br><br>
+
+        <!--DROP DOWN LISTS-->
+
+        Country:
+        <!--th:field - binding to property on STUDENT object-->
+        <select th:field="${student.country}" id="">
+            <!--loop over the list of countries-->  <!--value sent during form submission-->  <!--text displayed to user-->
+            <option th:each="tempCountry : ${countries}" th:value="${tempCountry}"  th:text="${tempCountry}"/>
+
+        </select>
+
+        <br><br>
+
+        <!--RADIO BUTTON-->
+
+        Favorite Programming Language:
+
+        <input type="radio" th:field="${student.favoriteLanguage}" th:value="Go">Go</input>
+        <input type="radio" th:field="${student.favoriteLanguage}" th:value="Java">Java</input>
+        <input type="radio" th:field="${student.favoriteLanguage}" th:value="Python">Python</input>
+
+        <br><br>
+
+        <!--CHECK BOXES BUTTON-->
+
+        Favorite Operating Systems:
+
+        <!--Using the application.properties-->
+        <!--for each loop use the 'systems' attribute in the model-->
+        <input type="checkbox" th:field="${student.favoriteSystems}"
+                               th:each="tempSystem : ${systems}"
+                               th:value="${tempSystem}"
+                               th:text="${tempSystem}"/>
+
+        <br><br>
+
+        <input type="submit" value="Submit" />
+
+    </form>
+</body>
+</html>
