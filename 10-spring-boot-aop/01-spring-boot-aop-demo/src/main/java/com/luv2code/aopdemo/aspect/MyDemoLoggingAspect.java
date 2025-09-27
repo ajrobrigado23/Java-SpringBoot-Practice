@@ -12,8 +12,8 @@ public class MyDemoLoggingAspect {
 
     // let's start with an @Before advice
 
-    // pointcut expression
-    @Before("execution(* add*(com.luv2code.aopdemo.Account))")
+    // pointcut expression (param wildcard - .. match any number of arguments)
+    @Before("execution(* com.luv2code.aopdemo.dao.*.*(..))")
     public void beforeAddAccountAdvice() {
         System.out.println("\n======>>> Executing @Before advice on addAccount() ");
     }
