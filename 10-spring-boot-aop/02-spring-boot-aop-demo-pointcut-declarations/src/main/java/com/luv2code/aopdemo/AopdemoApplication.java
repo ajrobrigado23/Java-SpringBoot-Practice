@@ -30,6 +30,15 @@ public class AopdemoApplication {
 		accountDAO.addAccount(new Account(), true);
 		accountDAO.doWork();
 
+		System.out.println("\n======>>> Exclude Getter and Setter");
+
+		// call the account getter/setter methods
+		accountDAO.setName("foobar");
+		accountDAO.setServiceCode("silver");
+
+		String name = accountDAO.getName();
+		String code = accountDAO.getServiceCode();
+
 		// call the membership business method
 		membershipDAO.addAccount();
 		membershipDAO.goToSleep();
