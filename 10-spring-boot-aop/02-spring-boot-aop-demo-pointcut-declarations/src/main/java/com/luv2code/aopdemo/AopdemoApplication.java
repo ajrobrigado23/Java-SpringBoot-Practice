@@ -27,7 +27,13 @@ public class AopdemoApplication {
 	public void demoTheBeforeAdvice(AccountDAO accountDAO, MembershipDAO membershipDAO) {
 
 		// call the business method
-		accountDAO.addAccount(new Account(), true);
+		Account myAccount = new Account();
+		myAccount.setName("Madhu");
+		myAccount.setLevel("Platinum");
+
+		accountDAO.addAccount(myAccount, true);
+
+
 		accountDAO.doWork();
 
 		System.out.println("\n======>>> Exclude Getter and Setter");
